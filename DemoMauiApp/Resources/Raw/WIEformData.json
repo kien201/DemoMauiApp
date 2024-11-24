@@ -1,0 +1,160 @@
+{
+  "questionSet": {
+    "name": "Cascading Demo June 2022 30",
+    "description": "Cascading Demo June 2022 29",
+    "questionGroups": [
+      {
+        "name": "Questions",
+        "description": "Questions with Cascading Settings",
+        "questions": [
+          {
+            "name": "Question 1",
+            "description": "",
+            "responseType": "Text",
+            "isMandatory": 1,
+            "allowGenericSearchFilter": 1,
+            "cascadingSettings": [
+              {
+                "cascadingValues": [ "text" ],
+                "cascadingGroupName": "Group 1"
+              },
+              {
+                "cascadingValues": [ "hey" ],
+                "cascadingGroupName": "Group 10"
+              }
+            ]
+          },
+          {
+            "name": "Question 2",
+            "description": "",
+            "responseType": "Boolean",
+            "isMandatory": false
+          }
+        ]
+      },
+      {
+        "name": "Group 1",
+        "description": "If Question 1 Text",
+        "questions": [
+          {
+            "name": "Further Question 1",
+            "description": "",
+            "responseType": "Text",
+            "isMandatory": 1,
+            "allowGenericSearchFilter": 1,
+            "cascadingSettings": [
+              {
+                "cascadingValues": [ "teext" ],
+                "cascadinggroupname": "Group 2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 2",
+        "description": "If Question 1 group 1 text",
+        "questions": [
+          {
+            "name": "Further Further Question 1",
+            "description": "",
+            "responseType": "Text",
+            "isMandatory": 1,
+            "allowGenericSearchFilter": 1,
+            "cascadingSettings": [
+              {
+                "cascadingValues": [ "teeext" ],
+                "cascadinggroupname": "Group 3"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 3",
+        "description": "If Question 1 group 2 text",
+        "questions": [
+          {
+            "name": "Further Further Further Question 1",
+            "description": "",
+            "responseType": "Text",
+            "isMandatory": 1,
+            "allowGenericSearchFilter": 1,
+            "cascadingSettings": [
+              {
+                "cascadingValues": [ "teeeext" ],
+                "cascadinggroupname": "Group 4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 4",
+        "description": "If Question 1 group 3 text",
+        "enableMultipleResponses": 1,
+        "displayAsTable": 0,
+        "questions": [
+          {
+            "name": "Further Further Further Further Question 1",
+            "description": "",
+            "responseType": "Text",
+            "isMandatory": 1,
+            "allowGenericSearchFilter": 1
+          }
+        ]
+      },
+      {
+        "name": "Group 10",
+        "description": "If Question 1 hey",
+        "questions": [
+          {
+            "name": "Group 10 select",
+            "description": "select from list",
+            "responseType": "List",
+            "category": "ClaimOutCome",
+            "isMultiple": 0,
+            "cascadingSettings": [
+              {
+                "cascadingValues": [ "Approved" ],
+                "cascadingGroupName": "Group 11"
+              },
+              {
+                "cascadingValues": [ "Rejected" ],
+                "cascadingGroupName": "Group 12"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 11",
+        "description": "If Group 10 select Approved",
+        "enableMultipleResponses": 1,
+        "displayAsTable": 1,
+        "questions": [
+          {
+            "name": "If Group 10 select Approved",
+            "description": "",
+            "responseType": "Text",
+            "isMandatory": 1,
+            "allowGenericSearchFilter": 1
+          }
+        ]
+      },
+      {
+        "name": "Group 12",
+        "description": "If Group 10 select Rejected",
+        "questions": [
+          {
+            "name": "If Group 10 select Rejected",
+            "description": "",
+            "responseType": "Text",
+            "isMandatory": 1,
+            "allowGenericSearchFilter": 1
+          }
+        ]
+      }
+    ]
+  }
+}

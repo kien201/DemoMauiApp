@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DemoMauiApp.ViewModels"
+             x:Class="DemoMauiApp.Views.MainPage"
+             x:DataType="viewmodels:MainPageViewModel"
+             Title="MainPage">
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <Grid ColumnDefinitions=".75*, .25*" ColumnSpacing="10">
+            <Entry Text="{Binding InputText}"/>
+            <Button
+                Grid.Column="1"
+                Text="Add"
+                Command="{Binding AddCommand}"/>
+        </Grid>
+        <CollectionView x:Name="collectionViewItem" ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItem
+                                Text="Delete"
+                                BackgroundColor="Red"
+                                Command="{Binding BindingContext.DeleteCommand, Source={Reference collectionViewItem}}"
+                                CommandParameter="{Binding .}"/>
+                        </SwipeView.RightItems>
+                        <Frame Margin="0,5,0,5">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding DetailCommand, Source={x:RelativeSource AncestorType={x:Type viewmodels:MainPageViewModel}}}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding .}"/>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

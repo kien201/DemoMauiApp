@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundamentals.Views.FlexLayout"
+             Title="FlexLayout">
+
+    <ContentPage.Resources>
+        <Style TargetType="BoxView">
+            <Setter Property="BackgroundColor"
+                    Value="White" />
+            <Setter Property="Color"
+                    Value="CornflowerBlue" />
+            <Setter Property="CornerRadius"
+                    Value="10" />
+            <Setter Property="WidthRequest"
+                    Value="50" />
+            <Setter Property="HeightRequest"
+                    Value="50" />
+            <Setter Property="Margin"
+                    Value="5" />
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <ScrollView Orientation="Both"
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="200"
+                    HeightRequest="200">
+            <Label Text="scroll view enable vertical and horizontal orientation"
+                   HeightRequest="300"
+                   WidthRequest="300" />
+        </ScrollView>
+        <FlexLayout BindableLayout.ItemsSource="{Binding Items}" Wrap="Wrap">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame FlexLayout.Basis="33.33%"
+                           Margin="5">
+                        <Label Text="{Binding .}" />
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+    </StackLayout>
+</ContentPage>

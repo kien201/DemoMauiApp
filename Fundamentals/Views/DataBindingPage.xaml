@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Fundamentals.ViewModels"
+             x:Class="Fundamentals.Views.DataBindingPage"
+             x:DataType="vm:DataBindingViewModel"
+             Title="DataBindingPage">
+    <StackLayout Padding="10, 0">
+        <Label Text="Two way" />
+        <Entry Text="{Binding InputValue, Mode=TwoWay}" />
+        
+        <Label Text="One way" />
+        <Entry Text="{Binding InputValue, Mode=OneWay}" />
+
+        <Label Text="One way to source" />
+        <Entry Text="{Binding InputValue, Mode=OneWayToSource}" />
+
+        <Label Text="One time" />
+        <Entry Text="{Binding InputValue, Mode=OneTime}" />
+
+        <Slider Maximum="100"
+                VerticalOptions="Center"
+                Value="{Binding InputValue}" />
+        <Button Text="Change input value"
+                Command="{Binding ChangeInputValueCommand}">
+        </Button>
+    </StackLayout>
+</ContentPage>

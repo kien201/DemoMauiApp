@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Fundamentals.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Fundamentals"
+    xmlns:views="clr-namespace:Fundamentals.Views"
+    Title="Fundamentals">
+
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+    <ShellContent Title="Data binding" ContentTemplate="{DataTemplate views:DataBindingPage}" />
+    <ShellContent Title="Layout page" ContentTemplate="{DataTemplate views:LayoutPage}" />
+    <ShellContent Title="Triggers page" ContentTemplate="{DataTemplate views:TriggersPage}" />
+    <ShellContent Title="RefreshView page" ContentTemplate="{DataTemplate views:RefreshViewPage}" />
+    <ShellContent Title="Layout options page" ContentTemplate="{DataTemplate views:LayoutOptionsPage}" />
+    <ShellContent Title="Demo page" ContentTemplate="{DataTemplate views:DemoPage}" />
+    <FlyoutItem Title="Layout">
+        <Tab Route="First">
+            <ShellContent Title="Stack Layout" ContentTemplate="{DataTemplate views:StackLayout}" />
+            <ShellContent Title="Grid Layout" ContentTemplate="{DataTemplate views:GridLayout}" />
+            <ShellContent Title="Flex Layout" ContentTemplate="{DataTemplate views:FlexLayout}" />
+            <ShellContent Title="Absolute Layout" ContentTemplate="{DataTemplate views:AbsoluteLayout}" />
+        </Tab>
+    </FlyoutItem>
+
+    <!--<TabBar>
+        <ShellContent Title="Layout1" ContentTemplate="{DataTemplate views:LayoutPage}" />
+        <ShellContent Title="Layout2" ContentTemplate="{DataTemplate views:LayoutPage}" />
+        <ShellContent Title="Layout3" ContentTemplate="{DataTemplate views:LayoutPage}" />
+        <ShellContent Title="Layout3" ContentTemplate="{DataTemplate views:LayoutPage}" />
+        <ShellContent Title="Layout3" ContentTemplate="{DataTemplate views:LayoutPage}" />
+        <ShellContent Title="Layout3" ContentTemplate="{DataTemplate views:LayoutPage}" />
+    </TabBar>-->
+
+</Shell>

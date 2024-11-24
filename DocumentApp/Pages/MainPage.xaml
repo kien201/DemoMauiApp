@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:DocumentApp.ViewModels"
+             xmlns:selectors="clr-namespace:DocumentApp.Selectors"
+             xmlns:converters="clr-namespace:DocumentApp.Converters"
+             x:Class="DocumentApp.Pages.MainPage"
+             Title="Home">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="FolderTemplate">
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItem 
+                            Text="Delete"
+                            BackgroundColor="Red"
+                            Command="{Binding DeleteDocumentCommand, Source={x:RelativeSource AncestorType={x:Type vm:MainPageViewModel}}}"
+                            CommandParameter="{Binding Id}"/>
+                    </SwipeView.RightItems>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding MoveToFolderCommand, Source={x:RelativeSource AncestorType={x:Type vm:MainPageViewModel}}}">
+                                <TapGestureRecognizer.CommandParameter>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="Path" />
+                                            <Binding Path="Name" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </TapGestureRecognizer.CommandParameter>
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="folder_icon.png" WidthRequest="50" HeightRequest="50" Margin="10" Aspect="AspectFit" />
+                        <StackLayout VerticalOptions="Center">
+                            <Label Text="{Binding Name}" FontSize="16" />
+                            <Label Text="{Binding UpdatedDate}" FontSize="13" />
+                        </StackLayout>
+                    </StackLayout>
+                </SwipeView>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="FileTemplate">
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItem 
+                            Text="Delete"
+                            BackgroundColor="Red"
+                            Command="{Binding DeleteDocumentCommand, Source={x:RelativeSource AncestorType={x:Type vm:MainPageViewModel}}}"
+                            CommandParameter="{Binding Id}"/> 
+                    </SwipeView.RightItems>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding NavigateToDetailCommand, Source={x:RelativeSource AncestorType={x:Type vm:MainPageViewModel}}}"
+                                CommandParameter="{Binding Id}"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="file_icon.png" WidthRequest="50" HeightRequest="50" Margin="10" Aspect="AspectFit" />
+                        <StackLayout VerticalOptions="Center">
+                            <Label Text="{Binding Name}" FontSize="16" />
+                            <Label Text="{Binding UpdatedDate}" FontSize="13" />
+                        </StackLayout>
+                    </StackLayout>
+                </SwipeView>
+            </DataTemplate>
+
+            <selectors:DocumentTemplateSelector 
+                x:Key="DocumentTemplateSelector" 
+                Folder="{StaticResource FolderTemplate}" 
+                File="{StaticResource FileTemplate}" />
+
+            <converters:PathToPreviousPathsConverter x:Key="PathToPreviousPaths" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout>
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All">
+            <ScrollView Orientation="Horizontal">
+                <StackLayout 
+                    Orientation="Horizontal" 
+                    Padding="10,0,10,0"
+                    BindableLayout.ItemsSource="{Binding CurrentPath, Converter={StaticResource PathToPreviousPaths}}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal">
+                                <Label 
+                                Text=">"
+                                FontSize="20"
+                                VerticalOptions="Center"/>
+                                <Label
+                                Text="{Binding Name}" Padding="20,10,20,10"
+                                FontSize="20"
+                                VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                        Command="{Binding MoveToFolderCommand, Source={x:RelativeSource AncestorType={x:Type vm:MainPageViewModel}}}"
+                                        CommandParameter="{Binding Path}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <BoxView HeightRequest="1" Color="#ccc" />
+            <CollectionView 
+                ItemsSource="{Binding Documents}" 
+                ItemTemplate="{StaticResource DocumentTemplateSelector}"
+                VerticalOptions="FillAndExpand" />
+        </StackLayout>
+        <Button 
+            Command="{Binding AddDocumentCommand}"
+            Text="+"
+            FontSize="35"
+            AbsoluteLayout.LayoutBounds=".97,.99,70,70"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            CornerRadius="999" />
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundamentals.Views.GridLayout"
+             Title="GridLayout">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="Medium" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid
+        RowDefinitions="100,2*,*"
+        ColumnDefinitions="25*,75*">
+        <BoxView Color="Red" />
+        <Label Text="row 0, col 0" />
+        <BoxView Grid.Column="1" Color="Green" />
+        <Label Grid.Column="1" Text="row 0, col 1" />
+
+        <StackLayout Grid.Row="1" BackgroundColor="Blue">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="row 1, col 0" />
+                <Label Text="row 1, col 0" />
+            </StackLayout>
+        </StackLayout>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <BoxView Color="Yellow" />
+            <Label Text="row 1, col 1" />
+        </Grid>
+        <BoxView Grid.Row="2" Grid.ColumnSpan="2" Color="Black" />
+        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="row 2, col 0 + 1" />
+    </Grid>
+</ContentPage>

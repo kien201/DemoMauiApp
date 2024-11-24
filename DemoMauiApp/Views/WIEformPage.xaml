@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:selectors="clr-namespace:DemoMauiApp.Selectors"
+             x:Class="DemoMauiApp.Views.WIEformPage"
+             Title="WIEformPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="GroupHeaderDataTemplate">
+            <StackLayout BackgroundColor="LightBlue"
+                         Padding="10">
+                <Label Text="{Binding Name}" />
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TextDataTemplate">
+            <Frame>
+                <StackLayout>
+                    <Label Text="{Binding Name}" />
+                    <Label Text="{Binding Description}" />
+                    <Entry Text="{Binding Answer}" />
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BooleanDataTemplate">
+            <Frame>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Name}"
+                           VerticalOptions="Center" />
+                    <CheckBox IsChecked="{Binding Answer}" />
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListSingleDataTemplate">
+            <Frame>
+                <StackLayout>
+                    <Label Text="{Binding Name}" />
+                    <Label Text="{Binding Description}" />
+                    <Entry Text="{Binding Answer}" />
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <selectors:QuestionSelector x:Key="QuestionSelector"
+                                    GroupHeaderDataTemplate="{StaticResource GroupHeaderDataTemplate}"
+                                    TextDataTemplate="{StaticResource TextDataTemplate}"
+                                    BooleanDataTemplate="{StaticResource BooleanDataTemplate}"
+                                    ListSingleDataTemplate="{StaticResource ListSingleDataTemplate}" />
+    </ContentPage.Resources>
+    <Grid RowDefinitions="50,*">
+        <Label Grid.Row="0"
+               Text="{Binding WIEform.QuestionSet.Name}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Questions}"
+                        ItemTemplate="{StaticResource QuestionSelector}"
+                        Margin="10">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:selectors="clr-namespace:Fundamentals.Selectors"
+             xmlns:views="clr-namespace:Fundamentals.Views"
+             x:Class="Fundamentals.Views.LayoutPage"
+             Title="LayoutPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Array x:Key="ArrayTest" Type="{x:Type x:String}">
+                <x:String>Monkey</x:String>
+                <x:String>Elephan</x:String>
+                <x:String>Cat</x:String>
+            </x:Array>
+
+            <selectors:EvenSelector x:Key="EvenSelector">
+                <selectors:EvenSelector.EvenTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="Green">
+                            <Label Text="{Binding .}" />
+                        </Frame>
+                    </DataTemplate>
+                </selectors:EvenSelector.EvenTemplate>
+                <selectors:EvenSelector.OddTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="Red">
+                            <Label Text="{Binding .}" />
+                        </Frame>
+                    </DataTemplate>
+                </selectors:EvenSelector.OddTemplate>
+            </selectors:EvenSelector>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <FlexLayout
+            Wrap="Wrap"
+            BindableLayout.ItemsSource="{StaticResource ArrayTest}"
+            BindableLayout.ItemTemplateSelector="{StaticResource EvenSelector}">
+        </FlexLayout>
+        <Picker ItemsSource="{StaticResource ArrayTest}" SelectedIndex="0" />
+        <Button
+            Text="Back"
+            Clicked="Navigate"/>
+    </StackLayout>
+</ContentPage>

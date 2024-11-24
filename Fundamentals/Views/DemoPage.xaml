@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Fundamentals.ViewModels"
+             xmlns:custom="clr-namespace:Fundamentals.CustomControls"
+             x:Class="Fundamentals.Views.DemoPage"
+             x:DataType="vm:DemoPageViewModel"
+             Title="Demo">
+    <VerticalStackLayout>
+        <Label Text="Welcome to .NET MAUI!"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+        <StackLayout BackgroundColor="Red">
+            <StackLayout.Triggers>
+                <DataTrigger TargetType="StackLayout" Binding="{Binding IsVisible}" Value="False">
+                    <Setter Property="HeightRequest"
+                            Value="0" />
+                </DataTrigger>
+            </StackLayout.Triggers>
+            <Label Text="hello world" />
+        </StackLayout>
+        <Button Command="{Binding ToggleVisibleCommand}"
+                Text="Toggle" />
+    </VerticalStackLayout>
+</ContentPage>

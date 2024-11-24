@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fundamentals.Views.LayoutOptionsPage"
+             Title="LayoutOptionsPage">
+    <StackLayout>
+        <StackLayout BackgroundColor="Red" VerticalOptions="FillAndExpand"></StackLayout>
+        <StackLayout BackgroundColor="Green" VerticalOptions="FillAndExpand"></StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout BackgroundColor="Purple" VerticalOptions="FillAndExpand">
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <!--<Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />
+                        <Label Text="1234" />-->
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <Label Text="1234" />
+                    <Label Text="1234" />
+                    <Label Text="1234" />
+                    <Label Text="1234" />
+                    <Label Text="1234" />
+                    <Label Text="1234" />
+                    <Label Text="1234" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout BackgroundColor="Blue" VerticalOptions="FillAndExpand"></StackLayout>
+        <StackLayout BackgroundColor="Yellow" VerticalOptions="FillAndExpand"></StackLayout>
+    </StackLayout>
+</ContentPage>
